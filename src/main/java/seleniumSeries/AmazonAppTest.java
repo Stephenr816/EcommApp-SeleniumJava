@@ -5,12 +5,12 @@ import org.openqa.selenium.WebDriver;
 
 public class AmazonAppTest {
 	
-	static WebDriver driver;
+	
 
 	public static void main(String[] args) {
 		
 		BrowserUtil br = new BrowserUtil();
-		driver = br.init_driver("chrome");
+		WebDriver driver = br.init_driver("chrome");
 		br.launchUrl("https://www.amazon.in/");
 		String title = br.getPageTitle();
 		
