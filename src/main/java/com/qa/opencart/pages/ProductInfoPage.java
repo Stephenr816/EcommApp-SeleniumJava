@@ -74,7 +74,7 @@ public class ProductInfoPage {
 		
 	}
 	
-	public void getQty(String qty) {
+	public void selectQuantity(String qty) {
 		
 		eleUtil.doSendKeys(productQuantity, qty);
 	}
