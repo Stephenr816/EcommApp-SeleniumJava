@@ -7,19 +7,30 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.qa.opencart.factory.DriverFactory;
+
 public class ElementUtils {
 	
-	WebDriver driver;
+	private WebDriver driver;
+	private JavascriptUtils jsUtil;
 	
 	public ElementUtils(WebDriver driver) {
 		
 		this.driver = driver;
+		jsUtil = new JavascriptUtils(driver);
 	}
 	
 	//Get Element Method
 	public WebElement getElement(By locator) {
 		
-		return driver.findElement(locator);
+		WebElement element = driver.findElement(locator);
+		
+		if(Boolean.parseBoolean(DriverFactory.highlight)) {
+			
+			jsUtil.flash(element);
+			
+		}
+		return element;
 	}
 	
 	//Get Elements Method

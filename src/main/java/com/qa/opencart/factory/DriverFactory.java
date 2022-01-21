@@ -21,6 +21,9 @@ public class DriverFactory {
 	
 	WebDriver driver;
 	Properties prop;
+	private OptionsManager optionsManager;
+	
+	public static String highlight = null;
 	
 	/**
 	 * 
@@ -29,6 +32,9 @@ public class DriverFactory {
 	 */
 	public WebDriver init_driver(Properties prop) {
 		
+		highlight = prop.getProperty("highlight");
+		optionsManager = new OptionsManager(prop);
+		
 		String browserName = prop.getProperty("browser").trim();
 		
 		System.out.println("Initializing the browser : " + browserName);
@@ -36,12 +42,12 @@ public class DriverFactory {
 		if(browserName.equalsIgnoreCase("chrome")) {
 			
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			driver = new ChromeDriver(optionsManager.getChromeOptions());
 			
 		} else if(browserName.equalsIgnoreCase("firefox")) {
 			
 			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
+			driver = new FirefoxDriver(optionsManager.getFirefoxOptions());
 			
 		} else if(browserName.equalsIgnoreCase("safari")) {
 			
